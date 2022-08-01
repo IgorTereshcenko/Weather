@@ -1,0 +1,9 @@
+body {
+  background: #B0D6FC;
+  font-family: 'Merienda', cursive;
+}
+
+* .container {
+  max-width: 802px;
+  margin: 0 auto;
+}
