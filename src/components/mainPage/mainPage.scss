@@ -18,6 +18,37 @@
         justify-content: center;
         align-items: center;
     }
+    .city {
+        font-weight: 700;
+        font-size: 30px;
+        color: #000000;
+        margin-bottom: 20px;
+    }
+    .humidity {
+        font-weight: 800;
+        font-size: 30px;
+        color: #F8F8F8;
+        text-shadow: 0px 3.11329px 6.22657px rgba(153, 178, 240, 0.74);
+    }
+    .temperature {
+        font-weight: 800;
+        font-size: 30px;
+        color: #F8F8F8;
+        text-shadow: 0px 3.11329px 6.22657px rgba(153, 178, 240, 0.74);
+    }
+    .weather {
+        text-align: center;
+        font-weight: 800;
+        font-size: 15px;
+        color: #0e0c0c;
+        text-shadow: 0px 3.11329px 6.22657px rgba(153, 178, 240, 0.74);
+    }
+    .wind {
+        font-weight: 800;
+        font-size: 30px;
+        color: #F8F8F8;
+        text-shadow: 0px 3.11329px 6.22657px rgba(153, 178, 240, 0.74);
+    }
    
     &__waftherImg {
         margin-top: 30px;

@@ -2,49 +2,55 @@
 import { useState, useEffect } from 'react';
 import WeatherServise from '../../services/WeatherServise';
 import './mainPage.scss';
-import rainsun from '../../resurse/rainSunImg.svg';
-import Temperature from '../temperature/Temperature';
-import Humidity from '../humidity/Humidity';
-import Wind from '../wind/Wind';
-import City from '../city/City';
 import SearchCity from "../searchCity/SearchCity";
-import Weather from '../weather/Weather';
-import WeatherIcon from '../weatherIcon/WeatherIcon';
+import Spinner from '../spinner/Spinner';
 
 const MainPage = () => {
 
     const {getWeather} = WeatherServise();
     
     const [cities, setCities] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         (async () => {
             setCities(await getWeather())
+            setLoading(false)
         })()
-      }, [])
-    
+    }, [])
+
     const onChangeCity = async (e) => {
         setCities(await getWeather(e.target.value))
     }
+
+    const content = loading ? <Spinner/> : <Wiev cities={cities}/>
     
     return (
         <div className="main_page">
             <div className="main_page__block">
                 <div className="main_page__wrapper">
-                    <City name = {cities.name}/>
+                <div className="city">{cities.name}</div>
                     <SearchCity onChangeCity={onChangeCity}/>
-                    <div className="main_page__waftherImg">
-                        <Weather weather = {cities.weather}/>
-                        <WeatherIcon icon={cities.icon}/>
-                    </div>
-                    <div className="main_page__date">
-                        <Temperature temp = {cities.temp} />
-                        <Humidity humidity = {cities.humidity + '%'}/>
-                        <Wind speed = {cities.speed}/>
-                    </div>
+                    {content}
                 </div>  
             </div>
         </div>
+    )
+}
+
+const Wiev = ({cities}) => {
+    return (
+        <>
+            <div className="main_page__waftherImg">
+                <div className="weather">{cities.weather}</div>
+                <div className="weather_icon"><img src={`http://openweathermap.org/img/wn/${cities.icon}@2x.png`} alt="" /></div>
+            </div>
+            <div className="main_page__date">
+                <div className="temperature">{cities.temp} C</div>
+                <div className="humidity">Humidity: {cities.humidity}</div>
+                <div className="wind">Wind: {cities.speed} м/с</div>
+            </div>
+        </>
     )
 }
 
